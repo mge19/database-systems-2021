@@ -3,7 +3,7 @@ $(document).ready(function () {
     var size = 0;
     $.ajax({
         type: "POST",
-        url: "database-systems-2021.herokuapp.com",
+        url: "database-systems-2021.herokuapp.com/getUser",
         async: false,
         success: function (data) {
             console.log(data);
