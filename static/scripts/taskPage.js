@@ -42,7 +42,7 @@ $(document).ready(function () {
     console.log("Task query");
     $.ajax({
         type: "POST",
-        url: "http://127.0.0.1:2021/getTasks",
+        url: "database-systems-2021.herokuapp.com/getTasks",
         success: function (data) {
             console.log(data);
             updateVal(JSON.parse(data));
@@ -55,7 +55,7 @@ $(document).ready(function () {
     console.log("Upcoming Task query");
     $.ajax({
         type: "POST",
-        url: "http://127.0.0.1:2021/upcomingTasks",
+        url: "database-systems-2021.herokuapp.com/upcomingTasks",
         success: function (data) {
             let updates = JSON.parse(data);
             console.log("UPDATES: ", updates);
@@ -150,7 +150,7 @@ $(document).ready(function () {
         console.log("Sending search query:", dict);
         $.ajax({
             type: "POST",
-            url: "http://127.0.0.1:2021/searchTasks",
+            url: "database-systems-2021.herokuapp.com/searchTasks",
             data: dict,
             success: function (data) {
                 console.log("AJAX RETURN: ", data);
@@ -216,7 +216,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            url: "http://127.0.0.1:2021/deleteUserAlert",
+            url: "database-systems-2021.herokuapp.com/deleteUserAlert",
             data: {
                 value: taskid
             },
@@ -248,7 +248,7 @@ $(document).ready(function () {
 		       dict+=value+',';});
              	$.ajax({
          	   type: "POST",
-         	   url: "http://127.0.0.1:2021/updateUserAlert",
+         	   url: "database-systems-2021.herokuapp.com/updateUserAlert",
          	   data:{	
 		     value:dict,
 		   },
