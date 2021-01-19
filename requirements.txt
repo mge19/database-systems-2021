@@ -5,3 +5,4 @@ Flask-Bootstrap >= 3.3.7.1
 Flask-WTF
 WTForms
 Flask-Login
+json
