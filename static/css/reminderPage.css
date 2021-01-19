@@ -1,0 +1,152 @@
+body {
+    background-color: #bfc8b9;
+}
+
+.spacer {
+    height: 40px;
+}
+
+h1 > strong {
+    color: white;
+    font-weight: lighter;
+    font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+}
+
+.tenp {
+    width: 10%;
+}
+
+.fivep {
+    width: 5%;
+}
+
+
+label {
+    display: block;
+    font-size: 1.25rem;
+    color: white;
+    font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+}
+p {
+    font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+}
+
+.form-input-div {
+    background: linear-gradient(to left, #080808, #02143e);
+}
+#book-form > input {
+    width: 50%;
+    margin: 0px auto 10px auto;
+}
+.form-group {
+    text-align: center;
+}
+.form-group:not(.row) {
+    width: 70%;
+    margin: auto;
+}
+
+.form-group .one-time{
+    display: inline-block;
+    margin: 0px 10px;
+}
+.one-time.title{
+    width: 70%;
+}
+#one-time-input{
+    width: 150px;
+}
+#title{
+    height: 30px;
+}
+
+.form-group .repeated {
+    display: inline-block;
+    margin: 0px 10px;
+}
+.search-sec {
+    display: none;
+}
+
+.search-area {
+    margin-left: 15px;
+    padding: 5px 10px 10px 10px;
+    max-height: 452px;
+    background: linear-gradient(270deg, #1c1b1b, #1e1d00);
+    overflow: auto;
+}
+.mainp {
+    color: white;
+    text-align: center;
+    font-size: 25px;
+    margin: 0;
+}
+
+.mainhr {
+    margin: 0px;
+    background: white;
+    width: auto;
+}
+.active-flex {
+    display: flex !important;
+}
+
+.queries {
+    display: flex;
+    margin-top: 5px;
+}
+
+.queries p {
+    color: white;
+    font-size: 1.25rem;
+    font-weight: lighter;
+    margin-right: 10px;
+    margin-top: 0px;
+}
+
+.queries button {
+    height: 30px;
+    font-weight: bold;
+}
+
+#searchType {
+    height: 30px;
+    margin-right: 10px;
+}
+
+.year {
+    width: 30%;
+    height: 30px;
+    margin-right: 5px;
+}
+
+.search-sec * {
+    height: 30px;
+    margin-right: 5px;
+}
+
+.container {
+    max-width: 1400px;
+}
+.description-area { /*En altta description gösterilen yer*/
+    max-width: 960px;
+    margin: 40px auto;
+    font-size: 1.25rem;
+    color: white;
+    text-align: center;
+}
+
+hr {
+    width: 90%;
+    margin: 20px auto;
+    height: 2px;
+    background: #000000;
+    border-radius: 5px;
+}
+
+.one-time.w-100 {
+    margin: 0px;
+}
+.repeated.d-block {
+    margin: 0px;
+}

@@ -1,0 +1,237 @@
+body {
+    background-color: #bfc8b9;    
+}
+
+.spacer {
+    height: 80px;
+}
+
+h1 > strong {
+    color: white;
+    font-weight: lighter;
+    font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+}
+p {
+    font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+}
+.mainp {
+    color: white;
+    text-align: center;
+    font-size: 25px;
+    margin: 0;
+}
+.mainhr {
+    margin: 0px;
+    background: white;
+    width: auto;
+}
+.tenp {
+    width: 10%;
+}
+
+.fivep {
+    width: 5%;
+}
+
+.search-sec {
+    display: none;
+}
+
+.active-flex {
+    display: flex !important;
+}
+
+.search-area {
+    margin-left: 15px;
+}
+.searchWrapper {
+    padding: 5px 10px 10px 10px;
+    height: 326.5px;
+    background: linear-gradient(270deg, #1c1b1b, #1e1d00);
+    overflow: auto;
+}
+.queries {
+    display: flex;
+    margin-top: 5px;
+}
+
+    .queries p {
+        color: white;
+        font-size: 1.25rem;
+        font-weight: lighter;
+        margin-right: 10px;
+        margin-top: 0px;
+    }
+
+    .queries button {
+        height: 30px;
+        font-weight: bold;
+    }
+
+#searchType {
+    height: 30px;
+    margin-right: 10px;
+}
+
+.year {
+    width: 30%;
+    height: 30px;
+    margin-right: 5px;
+}
+
+.search-sec * {
+    height: 30px;
+    margin-right: 5px;
+}
+
+label {
+    display: block;
+    font-size: 1.25rem;
+    color: white;
+    font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+}
+
+.form-input-div {
+    background: linear-gradient(to left, #080808, #02143e);
+}
+
+#book-form > input {
+    width: 50%;
+    margin: 5px auto 10px auto;
+}
+
+.form-group {
+    text-align: center;
+}
+
+.form-group:not(.row) {
+    width: 70%;
+    margin: auto;
+}
+
+.form-group > textarea {
+    width: 100%;
+}
+
+.container {
+    max-width: 1400px;
+}
+
+.form-group div {
+    display: inline-block;
+    margin: 0px 10px;
+}
+
+#title {
+    height: 30px;
+}
+
+
+/*Text box*/
+.description-area { /*En altta description gösterilen yer*/
+    font-size: 1.25rem;
+    color: black;
+    /*text-align: center;*/
+}
+
+.taskDescription {
+    font-size: 1.25rem;
+    color: black;
+    text-align: center;
+    margin-top: 20px;
+    display: none;
+}
+
+    .taskDescription p {
+        background: #FFFFBE;
+        padding: 1em;
+        width: 80%;
+        font-size: 1em;
+        line-height: 1.5em;
+        vertical-align: middle;
+        box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.6), 0 0 1px rgba(0, 0, 0, 0);
+        margin: auto;
+        text-align: left;
+    }
+
+    .taskDescription.active {
+        display: block;
+    }
+
+hr {
+    width: 90%;
+    margin: 20px auto;
+    height: 2px;
+    background: #000000;
+    border-radius: 5px;
+}
+
+/*En alt kisim*/
+.bottomarea {
+    max-width: 1400px;
+    margin: auto;
+}
+
+.taskList {
+    max-width: 400px;
+    background: linear-gradient(270deg, #D9A68C, #D9D68C);
+    border-radius: 25px;
+    margin: 5px 5px 5px 0px;
+    padding-bottom: 5px;
+}
+
+    .taskList h3 {
+        margin-top: 5px;
+        margin-left: 25px;
+    }
+
+ul {
+    list-style: none;
+    padding: 0px;
+}
+
+    ul.sets {
+        margin: 0px 25px;
+    }
+
+.sets > li.active {
+    color: #B71C1C;
+    margin-left: -20px !important;
+}
+
+.sets li:not(.head) {
+    border-bottom: 1px dashed #000;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 8px;
+    background-color: #ffffffba;
+    cursor: pointer;
+    font-weight: 700;
+    margin-left: 0;
+    transition: margin-left .125s ease-in;
+    font-size: 14px;
+}
+
+.sets li.head {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #721616;
+    border-bottom: 3px solid;
+    font-family: "Nunito";
+}
+
+.sets .show {
+    float: right;
+    padding-bottom: 0;
+    display: none;
+    font-size: 12px;
+}
+#submitButton {
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+}
+.sets > li.active a {
+    display: inline;
+}
