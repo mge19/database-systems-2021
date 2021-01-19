@@ -34,7 +34,7 @@ $(document).ready(function () {
         console.log("clicked");
         $.ajax({
             type: "POST",
-            url: "http://127.0.0.1:2021/group_update",
+            url: "database-systems-2021.herokuapp.com/group_update",
             async: false,
         });
     });
