@@ -1,0 +1,5 @@
+mount -t vboxsf <dirname> <file_path>
+adduser <username> vboxsf {restart}
+docker run --name dbproject -e POSTGRES_PASSWORD=1a2b3c -d -p 5432:5432 postgres
+docker rm --force dbproject
+docker exec -it dbproject psql -U postgres -d postgres
