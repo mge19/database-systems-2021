@@ -13,7 +13,7 @@ $(document).ready(function () {
     console.log("Admin Group query");
     $.ajax({
         type: "POST",
-        url: "http://127.0.0.1:2021/getAdminGroup",
+        url: "database-systems-2021.herokuapp.com/getAdminGroup",
         async: false,
         success: function (data) {
             console.log(data);
@@ -41,7 +41,7 @@ $(document).ready(function () {
     console.log("Nonadmin group query");
     $.ajax({
         type: "POST",
-        url: "http://127.0.0.1:2021/nonAdminGroup",
+        url: "database-systems-2021.herokuapp.com/nonAdminGroup",
         async: false,
         success: function (data) {
             console.log(data);
