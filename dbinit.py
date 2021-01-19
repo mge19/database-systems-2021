@@ -62,7 +62,8 @@ def initialize(url):
         cursor.close()
 
 if __name__ == "__main__":
-    url="postgres://postgres:1a2b3c@localhost:5432/postgres"
+    url="postgres://htdzjafdlgqcto:e0d12d58a76a23c0d74bcb47834211e2e7d579e5817f7f5830b5f414ac1b18a5@ec2-54-216-155-253.eu-west-1.compute.amazonaws.com:5432/d1m7ithdu0pdc7"
+    #url="postgres://postgres:1a2b3c@localhost:5432/postgres"
     print(url)
     if url is None:
         print("Usage: DATABASE_URL=url python dbinit.py", file=sys.stderr)
