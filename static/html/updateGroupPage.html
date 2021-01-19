@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/groupPage.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/items/dropdownbutton.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/items/footer.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/items/calendar.css')}}">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', filename = 'scripts/updateGroupPage.js')}}"></script>
+    <script src="{{ url_for('static', filename = 'scripts/items/dropdownbutton.js')}}"></script>
+    <script src="{{ url_for('static', filename = 'scripts/items/calendar.js')}}"></script>
+	<title>Update Group</title>
+</head>
+<body>
+    <!--Navbar header-->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">Planner</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('main_page') }}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">Navigate</a>
+                    <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="{{ url_for('group_page') }}">Group Page</a> 
+                        <a class="dropdown-item" href="{{ url_for('reminder_page') }}">Reminder Page</a>
+                        <a class="dropdown-item" href="{{ url_for('task_page') }}">Task Page</a>
+                    </div>
+                </li>
+            </ul>
+            <div class="dropdown">
+                <button onclick="myFunction()" class="dropbtn" />
+                <div id="myDropdown" class="dropdown-content">
+					<a href="{{ url_for('edit_profile_page') }}">Edit Profile</a>
+                    <a href="{{ url_for('change_password_page') }}">Change Password</a>
+                    <a href="{{ url_for('logout_page') }}">Log Out</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="spacer"></div>
+
+    <!--group form-->
+    <div class="container mt-5">
+        <div class="title text-center">
+            <h1 class="display-5">
+                <i class="fas fa-user-alt text-success"></i> <strong>Update Group</strong>
+            </h1>
+        </div>
+        <div class="main row">
+            <div class="col-sm-12 col-md-5 form-input-div">
+                <p class="mainp">Group Update Form</p>
+                <hr class="mainhr"/>
+                <form id="book-form" autocomplete="off" method="post">
+    	            <div class="form-group">
+                     <h2 class="mainp">New User List</h2>
+		        <ul class="userlist">
+		    
+                        </ul>
+		    </div>
+                    <div class="form-group">
+    			<label for="newgroupName">Group Name</label>
+    			<input type="text" class="form-control" name="new_group_name" placeholder="New Group Name" required>
+ 		    </div>
+                    <div class="form-group">
+                        <label for="title">Description</label>
+                        <textarea class="newgroupdesc" name="new_description" rows="5" cols="30" placeholder="New Description" required></textarea>
+                    </div>
+                    <input type="submit" id="submitButton" class="button special" value="Update Group">
+					{% for message in get_flashed_messages() %}
+						<p class="mainp">{{ message }}</p>
+					{% endfor %}		
+                </form>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div style="height:100px;"></div>
+</body>
+</html>

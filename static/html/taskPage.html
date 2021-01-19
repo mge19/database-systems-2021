@@ -1,0 +1,208 @@
+﻿﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/taskPage.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/items/dropdownbutton.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/items/footer.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/items/calendar.css')}}">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', filename = 'scripts/taskPage.js')}}"></script>
+    <script src="{{ url_for('static', filename = 'scripts/items/dropdownbutton.js')}}"></script>
+    <script src="{{ url_for('static', filename = 'scripts/items/calendar.js')}}"></script>
+	<title>User Tasks</title>
+</head>
+<body>
+    <!--Navbar header-->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">Planner</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('main_page') }}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">Navigate</a>
+                    <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="{{ url_for('group_page') }}">Group Page</a> 
+                        <a class="dropdown-item" href="{{ url_for('reminder_page') }}">Reminder Page</a>
+                        <a class="dropdown-item" href="{{ url_for('task_page') }}">Task Page</a>
+                    </div>
+                </li>
+            </ul>
+			<div class="dropdown">
+                <button onclick="myFunction()" class="dropbtn" />
+                <div id="myDropdown" class="dropdown-content">
+					<a href="{{ url_for('edit_profile_page') }}">Edit Profile</a>
+                    <a href="{{ url_for('change_password_page') }}">Change Password</a>
+                    <a href="{{ url_for('logout_page') }}">Log Out</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="spacer"></div>
+
+    <!--Tablo ve input field-->
+    <div class="container mt-5">
+        <div class="title text-center">
+            <h1 class="display-5">
+                <i class="fas fa-user-alt text-success"></i> <strong>Task Management</strong>
+            </h1>
+        </div>
+        <div class="main row">
+            <div class="col-sm-12 col-md-5 form-input-div">
+                <p class="mainp">Add Task</p>
+                <hr class="mainhr"/>
+                <form id="book-form" autocomplete="off" method="post">
+                    <div class="form-group w-100">
+                        <div class="date d-inline-block">
+                            <label for="title">Date</label>
+                            <input name="date" type="date" id="one-time-input" required >
+                        </div>
+                        <div class="time d-inline-block">
+                            <label for="title">Time</label>
+                            <input name="time" type="time" required >
+                        </div>
+						<div class="form-group">
+							<label for="title">Urgency</label>
+							<select name="urgency" class="urgency"></select>
+						</div>
+                        <div class="title d-inline-block">
+                            <label for="title">Title</label>
+                            <input name="title" type="text" id="add-title" class="form-control" placeholder="Title" required >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Message</label>
+                        <textarea class="taskdesc" name="message" rows="5" cols="30" placeholder="Message" required ></textarea>
+                    </div>					
+                    <input name="button" type="submit" value="Submit" id="submitButton" class="btn btn-success btn-block add-btn">
+                </form>
+            </div>
+            <!--Search Field-->
+            <div class="col-sm-12 col-md-7">
+                <div class="searchWrapper">
+                    <p class="mainp">Search Tasks</p>
+                    <hr class="mainhr"/>
+                    <div class="queries">
+                        <p>Search by</p>
+                        <select id="searchType">
+                            <option value="ydiv">YY</option>
+                            <option value="ymdiv">MM/YY</option>
+                            <option value="ymddiv">DD/MM/YY</option>
+                            <option value="tdiv">Title</option>
+                        </select>
+                        <div class="search-sec ydiv active-flex">
+                            <input type="text" placeholder="Year" class="form-control year">
+                        </div>
+                        <div class="search-sec ymdiv">
+                            <input type="text" placeholder="Year" class="form-control year">
+                            <select class="months"></select>
+                        </div>
+                        <div class="search-sec ymddiv">
+                            <input type="text" placeholder="Year" class="form-control year">
+                            <select class="months"></select>
+                            <select class="days"></select>
+                        </div>
+                        <div class="search-sec tdiv">
+                            <input type="text" placeholder="Title" id="title" class="form-control">
+                        </div>
+                        <button class="btn btn-success btn-sm ml-auto">Search</button>
+
+                    </div>
+                    <table class="table table-striped mt-2 table-hover table-dark table-striped">
+                        <thead class="thead-dark">
+							<tr>
+								<th class="theads tenp">Date</th>
+								<th class="theads tenp">Hours</th>
+								<th class="theads tenp">Title</th>
+								<th class="theads fiftyp">Urgency</th>
+								<th class="theads fivep"></th>
+								<th class="theads fivep"></th>
+								<th class="theads fivep"></th>
+							</tr>
+                        </thead>
+                        <tbody id="book-list">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr />
+
+    <!--Task list ve display box-->
+    <div class="row bottomarea">
+        <!--Task List-->
+        <div class="col-sm-12 col-md-5">
+            <ul class="taskList">
+
+            </ul>
+        </div>
+        <div class="col-sm-12 col-md-7 description-area">
+            <!--Calendar-->
+            <div class="calendar">
+                <div class="content">
+                    <div class="calendar-container">
+                        <div class="calendar">
+                            <div class="year-header">
+                                <span class="left-button" id="prev"> &lang; </span>
+                                <span class="year" id="label"></span>
+                                <span class="right-button" id="next"> &rang; </span>
+                            </div>
+                            <table class="months-table">
+                                <tbody>
+                                    <tr class="months-row">
+                                        <td class="month">Jan</td>
+                                        <td class="month">Feb</td>
+                                        <td class="month">Mar</td>
+                                        <td class="month">Apr</td>
+                                        <td class="month">May</td>
+                                        <td class="month">Jun</td>
+                                        <td class="month">Jul</td>
+                                        <td class="month">Aug</td>
+                                        <td class="month">Sep</td>
+                                        <td class="month">Oct</td>
+                                        <td class="month">Nov</td>
+                                        <td class="month">Dec</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <table class="days-table">
+                                <td class="day">Sun</td>
+                                <td class="day">Mon</td>
+                                <td class="day">Tue</td>
+                                <td class="day">Wed</td>
+                                <td class="day">Thu</td>
+                                <td class="day">Fri</td>
+                                <td class="day">Sat</td>
+                            </table>
+                            <div class="frame">
+                                <table class="dates-table">
+                                    <tbody class="tbody"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="events-container">
+                    </div>
+                </div>
+            </div>
+            <!--Calendar son-->
+            <div class="taskDescription">
+                <p class="description-area"></p>
+            </div>
+        </div>
+    </div>
+    <div style="height:100px;"></div>
+</body>
+</html>

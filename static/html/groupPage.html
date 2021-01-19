@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/groupPage.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/items/dropdownbutton.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/items/footer.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/items/calendar.css')}}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', filename = 'scripts/groupPage.js')}}"></script>
+    <script src="{{ url_for('static', filename = 'scripts/items/dropdownbutton.js')}}"></script>
+    <script src="{{ url_for('static', filename = 'scripts/items/calendar.js')}}"></script>
+	<title>Groups</title>
+</head>
+<body>
+    <!--Navbar header-->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">Planner</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('main_page') }}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">Navigate</a>
+                    <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="{{ url_for('group_page') }}">Group Page</a> 
+                        <a class="dropdown-item" href="{{ url_for('reminder_page') }}">Reminder Page</a>
+                        <a class="dropdown-item" href="{{ url_for('task_page') }}">Task Page</a>
+                    </div>
+                </li>
+            </ul>
+            <div class="dropdown">
+                <button onclick="myFunction()" class="dropbtn" />
+                <div id="myDropdown" class="dropdown-content">
+					<a href="{{ url_for('edit_profile_page') }}">Edit Profile</a>
+                    <a href="{{ url_for('change_password_page') }}">Change Password</a>
+                    <a href="{{ url_for('logout_page') }}">Log Out</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="spacer"></div>
+
+    <div class="container">
+       <h2 style="text-align:center">My Groups</h2>
+       <ul class="list-group">
+
+       </ul>
+    </div>
+    <div class="container">
+       <h2 style="text-align:center">Join a group</h2>
+	   <h3 style="text-align:center">Enter name of group you want to join:</h3>
+       <ul class="join-group">
+			<form method="POST"><li class="join-group-item">
+			   <input type="text" name="group_name" required>
+			   <input type="submit" value="Join" name="joinButton" required>
+			</form>
+       </ul>
+    </div>   
+    <div class="flex flex-3">
+          <article>
+                <footer>
+                   <a href="{{ url_for('group_create_page') }}" class="button special">Create Group</a>
+                 </footer>
+           </article>
+   </div>
+   <main>
+		{% for message in get_flashed_messages() %}
+			<p class="message" style="text-align:center">{{ message }}</p>
+		{% endfor %}
+	</main>
+</body>
+</html>
