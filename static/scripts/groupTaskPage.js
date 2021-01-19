@@ -42,7 +42,7 @@ $(document).ready(function () {
     console.log("Task query");
     $.ajax({
         type: "POST",
-        url: "http://127.0.0.1:2021/getGroupTasks",
+        url: "database-systems-2021.herokuapp.com/getGroupTasks",
         success: function (data) {
             console.log(data);
             updateVal(JSON.parse(data));
@@ -55,7 +55,7 @@ $(document).ready(function () {
     console.log("Upcoming Task query");
     $.ajax({
         type: "POST",
-        url: "http://127.0.0.1:2021/upcomingGroupTasks",
+        url: "database-systems-2021.herokuapp.com/upcomingGroupTasks",
         success: function (data) {
             let updates = JSON.parse(data);
             console.log("UPDATES: ", updates);
@@ -150,7 +150,7 @@ $(document).ready(function () {
         console.log("Sending search query:", dict);
         $.ajax({
             type: "POST",
-            url: "http://127.0.0.1:2021/searchGroupTasks",
+            url: "database-systems-2021.herokuapp.com/searchGroupTasks",
             data: dict,
             success: function (data) {
                 console.log("AJAX RETURN: ", data);
@@ -215,7 +215,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            url: "http://127.0.0.1:2021/deleteGroupAlert",
+            url: "database-systems-2021.herokuapp.com/deleteGroupAlert",
             data: {
                 value: taskid
             },
@@ -247,7 +247,7 @@ $(document).ready(function () {
 		       dict+=value+',';});
              	$.ajax({
          	   type: "POST",
-         	   url: "http://127.0.0.1:2021/updateGroupAlert",
+         	   url: "database-systems-2021.herokuapp.com/updateGroupAlert",
          	   data:{	
 		     value:dict,
 		   },
