@@ -351,13 +351,6 @@ def search_group_task_title(group_id, title):
     data = execute_sql(command % {'title' : title,'group_id': group_id})
     return data
 
-def get_user_groups(user_id):
-    command = """
-    SELECT * FROM GROUPS_USERS
-    WHERE user_id = '%(user_id)s';"""
-    data = execute_sql(command % {'user_id': user_id})
-    return data
-
 def get_user_admin_groups(user_id):
     command = """SELECT * FROM GROUPS_USERS INNER JOIN GROUPS
                 ON GROUPS_USERS.group_id = GROUPS.group_id
