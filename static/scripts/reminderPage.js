@@ -51,7 +51,7 @@ $(document).ready(function () {
     let days = ["Monday", "Tuesday", "Wednesday", "Thursday",
         "Friday", "Saturday", "Sunday"];
     //fill interval options
-    for (var i=0; i < options.length; i++) {
+    for (var i = 0; i < options.length; i++) {
         snippet = `<option value="${i}">${options[i]}</option>`
         $('.intervals').append(snippet);
     }
