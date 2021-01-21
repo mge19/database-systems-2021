@@ -34,7 +34,7 @@ $(document).ready(function () {
     console.log("Reminder query");
     $.ajax({
         type: "POST",
-        url: "database-systems-2021.herokuapp.com/getGroupReminders",
+        url: "/getGroupReminders",
         success: function (data) {
             console.log(data);
             updateVal(JSON.parse(data));
@@ -146,7 +146,7 @@ $(document).ready(function () {
         console.log("Sending search query:", dict);
         $.ajax({
             type: "POST",
-            url: "database-systems-2021.herokuapp.com/searchGroupReminders",
+            url: "/searchGroupReminders",
             data: dict,
             success: function (data) {
                 //console.log("AJAX RETURN: ", data);
@@ -209,7 +209,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            url: "database-systems-2021.herokuapp.com/deleteGroupAlert",
+            url: "/deleteGroupAlert",
             data: {
                 value: reminderid
             },
@@ -241,7 +241,7 @@ $(document).ready(function () {
 		   dict+=value+',';});
              	$.ajax({
          	   type: "POST",
-         	   url: "database-systems-2021.herokuapp.com/updateGroupAlert",
+         	   url: "/updateGroupAlert",
          	   data:{	
 		     value:dict,
 		   },
