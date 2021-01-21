@@ -31,26 +31,17 @@ def next_weekday(weekday, time, mode, iteration = 10): #get upcoming weekday dat
         days_ahead += 7
     weekday = d + datetime.timedelta(days_ahead)
     dates = []
-    if mode == 0:
-        delta = datetime.timedelta(days=1)
-        for i in range(iteration):
-            dates.append(d)
-            d = d + delta
-    elif mode == 1:
-        delta = datetime.timedelta(days=7)
-        for i in range(iteration):
-            dates.append(weekday)
-            weekday = weekday + delta
-    elif mode == 2:
-        delta = datetime.timedelta(days=14)
-        for i in range(iteration):
-            dates.append(weekday)
-            weekday = weekday + delta
-    elif mode == 3:
-        delta = datetime.timedelta(days=28)
-        for i in range(iteration):
-            dates.append(weekday)
-            weekday = weekday + delta
+    for i in range(iteration):
+        if mode == 0:
+            delta = datetime.timedelta(days=1)
+        elif mode == 1:
+            delta = datetime.timedelta(days=7)
+        elif mode == 2:
+            delta = datetime.timedelta(days=14)
+        elif mode == 3:
+            delta = datetime.timedelta(days=28)
+        dates.append(weekday)
+        weekday = weekday + delta
     print(dates)
     return dates
     
