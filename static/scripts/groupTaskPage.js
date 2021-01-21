@@ -72,9 +72,8 @@ $(document).ready(function () {
                     inhtml += '<ul class="sets">';
                     inhtml += '<li class="head" onclick=show_hide("show'+i+'")>' + day + '-' + month + '-' + year + '</li>';
                     inhtml += '<li class="show'+i+'" style="display:none">' + task["title"] + '<br><br>' + task["urgency"];
-		    inhtml += '<br><br>' + task["message"]+'</li>';
+		    inhtml += '<br><br>' + task["message"]+'</li></ul>';
             }
-            inhtml += '</ul>';
             console.log(inhtml);
             table.append(inhtml);
         },
