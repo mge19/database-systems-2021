@@ -3,7 +3,7 @@ $(document).ready(function () {
     var size = 0;
     $.ajax({
         type: "POST",
-        url: "http://127.0.0.1:2021/getUser",
+        url: "/getUser",
         async: false,
         success: function (data) {
             console.log(data);
@@ -34,7 +34,7 @@ $(document).ready(function () {
         console.log("clicked");
         $.ajax({
             type: "POST",
-            url: "database-systems-2021.herokuapp.com/group_update",
+            url: "/group_update",
             async: false,
         });
     });
