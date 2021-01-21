@@ -83,16 +83,15 @@ $(document).ready(function () {
 
 //input fieldlarin degerlerini doldurmak
 $(document).ready(function () {
-    let i = 1;
-    for (i; i <= 31; i++) {
+    for (var i = 1; i <= 31; i++) {
         snippet = `<option value="${i}">${i}</option>`
         $('.days').append(snippet); 
     }
-    for (i = 0; i < months.length; i++) {
+    for (var i = 0; i < months.length; i++) {
         snippet = `<option value="${months[i]}">${months[i]}</option>`
         $('.months').append(snippet); 
     }
-    for(i = 0; i < 3; i++) {
+    for(var i = 0; i < 3; i++) {
 	snippet = `<option value="${urgency[i]}">${urgency[i]}</option>`
         $('.urgency').append(snippet); 
     }
