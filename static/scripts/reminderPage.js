@@ -51,11 +51,16 @@ $(document).ready(function () {
     let options = ["Daily", "Weekly", "BiWeekly", "Monthly"];
     let days = ["Monday", "Tuesday", "Wednesday", "Thursday",
         "Friday", "Saturday", "Sunday"];
+    for (i = 0; i < days.length; i++) {
+        snippet = `<option value="${days[i]}">${days[i]}</option>`
+        $('.form-days.days').append(snippet); 
+        $('.rp-days').append(snippet); 
+    }
     //fill interval options
-    for (i; i < options.length; i++) {
+    for (i=0; i < options.length; i++) {
         snippet = `<option value="${i}">${options[i]}</option>`
         $('.form-interval.intervals').append(snippet);
-        $('.rp-intervals').append(snippet);
+        $('.intervals').append(snippet);
     }
     //fill month options
     for (i = 0; i < months.length; i++) {
