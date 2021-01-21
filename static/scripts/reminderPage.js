@@ -53,7 +53,7 @@ $(document).ready(function () {
         "Friday", "Saturday", "Sunday"];
     for (i = 0; i < days.length; i++) {
         snippet = `<option value="${days[i]}">${days[i]}</option>`
-        $('.form-days.days').append(snippet); 
+        $('.form-days.rp-days').append(snippet); 
         $('.rp-days').append(snippet); 
     }
     //fill interval options
