@@ -267,60 +267,72 @@ def update_group(group_id,new_group_name,new_description,admins,users):
     print("Other users are added to groups_users table")
     return
 
-def search_user_reminder_date(user_id, datetime,type):
-    datetime1=datetime
+def search_user_reminder_date(user_id, date_time,type):
+    datetime1=date_time
     if(type==0):
         datetime1=datetime1.replace(year=datetime1.year+1)
     elif(type==1):
-        datetime1=datetime1.replace(month=datetime1.month+1)
+        if date_time.month==12:
+            datetime1=datetime1.replace(year=datetime1.year+1,month=1)
+        else:    
+            datetime1=datetime1.replace(month=datetime1.month+1)
     elif(type==2):
-        datetime1=datetime1.replace(day=datetime1.day+1)
+        datetime1=datetime1+datetime.timedelta(days=1)
     command = """
     SELECT * FROM USER_ALERTS
     WHERE alert_time >= '%(datetime)s' AND alert_time < '%(datetime1)s' AND user_id = '%(user_id)s' AND type = 'reminder';"""
-    data = execute_sql(command % {'datetime' : datetime,'datetime1' : datetime1,'user_id': user_id})
+    data = execute_sql(command % {'datetime' : date_time,'datetime1' : datetime1,'user_id': user_id})
     return data
 
-def search_user_task_date(user_id, datetime,type):
-    datetime1=datetime
+def search_user_task_date(user_id, date_time,type):
+    datetime1=date_time
     if(type==0):
         datetime1=datetime1.replace(year=datetime1.year+1)
     elif(type==1):
-        datetime1=datetime1.replace(month=datetime1.month+1)
+        if date_time.month==12:
+            datetime1=datetime1.replace(year=datetime1.year+1,month=1)
+        else:    
+            datetime1=datetime1.replace(month=datetime1.month+1)
     elif(type==2):
-        datetime1=datetime1.replace(day=datetime1.day+1)
+        datetime1=datetime1+datetime.timedelta(days=1)
     command = """
     SELECT * FROM USER_ALERTS
     WHERE alert_time >= '%(datetime)s' AND alert_time < '%(datetime1)s' AND user_id = '%(user_id)s' AND type = 'task';"""
-    data = execute_sql(command % {'datetime' : datetime,'datetime1' : datetime1,'user_id': user_id})
+    data = execute_sql(command % {'datetime' : date_time,'datetime1' : datetime1,'user_id': user_id})
     return data
 
-def search_group_reminder_date(group_id, datetime,type):
-    datetime1=datetime
+def search_group_reminder_date(group_id, date_time,type):
+    datetime1=date_time
     if(type==0):
         datetime1=datetime1.replace(year=datetime1.year+1)
     elif(type==1):
-        datetime1=datetime1.replace(month=datetime1.month+1)
+        if date_time.month==12:
+            datetime1=datetime1.replace(year=datetime1.year+1,month=1)
+        else:    
+            datetime1=datetime1.replace(month=datetime1.month+1)
     elif(type==2):
-        datetime1=datetime1.replace(day=datetime1.day+1)
+        datetime1=datetime1+datetime.timedelta(days=1)
     command = """
     SELECT * FROM GROUP_ALERTS
     WHERE alert_time >= '%(datetime)s' AND alert_time < '%(datetime1)s' AND group_id = '%(group_id)s' AND type = 'reminder';"""
-    data = execute_sql(command % {'datetime' : datetime,'datetime1' : datetime1,'group_id': group_id})
+    data = execute_sql(command % {'datetime' : date_time,'datetime1' : datetime1,'group_id': group_id})
     return data
 
-def search_group_task_date(group_id, datetime,type):
-    datetime1=datetime
+def search_group_task_date(group_id, date_time,type):
+    datetime1=date_time
     if(type==0):
         datetime1=datetime1.replace(year=datetime1.year+1)
     elif(type==1):
-        datetime1=datetime1.replace(month=datetime1.month+1)
+        if date_time.month==12:
+            datetime1=datetime1.replace(year=datetime1.year+1,month=1)
+        else:    
+            datetime1=datetime1.replace(month=datetime1.month+1)
     elif(type==2):
-        datetime1=datetime1.replace(day=datetime1.day+1)
+        datetime1=datetime1+datetime.timedelta(days=1)
     command = """
     SELECT * FROM GROUP_ALERTS
     WHERE alert_time >= '%(datetime)s' AND alert_time < '%(datetime1)s' AND group_id = '%(group_id)s' AND type = 'task';"""
-    data = execute_sql(command % {'datetime' : datetime,'datetime1' : datetime1,'group_id': group_id})
+    data = execute_sql(command % {'datetime' : date_time,'datetime1' : datetime1,'group_id': group_id})
     return data
 
 def search_user_reminder_title(user_id, title):
