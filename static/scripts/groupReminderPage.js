@@ -47,34 +47,31 @@ $(document).ready(function () {
 
 //fill in values at reminder repeated select fields
 $(document).ready(function () {
-    let i = 0;
     let options = ["Daily", "Weekly", "BiWeekly", "Monthly"];
     let days = ["Monday", "Tuesday", "Wednesday", "Thursday",
         "Friday", "Saturday", "Sunday"];
     //fill interval options
-    for (i = 0; i < days.length; i++) {
+    for (var i = 0; i < days.length; i++) {
         snippet = `<option value="${days[i]}">${days[i]}</option>`
-        $('.form-days.days').append(snippet); 
         $('.rp-days').append(snippet); 
     }
     //fill interval options
-    for (i=0; i < options.length; i++) {
+    for (var i=0; i < options.length; i++) {
         snippet = `<option value="${i}">${options[i]}</option>`
-        $('.form-interval.intervals').append(snippet);
         $('.intervals').append(snippet);
     }
     //fill month options
-    for (i = 0; i < months.length; i++) {
+    for (var i = 0; i < months.length; i++) {
         snippet = `<option value="${months[i]}">${months[i]}</option>`
         $('.months').append(snippet);
     }
     //fill days
-    for (i = 1; i <= 31; i++) {
+    for (var i = 1; i <= 31; i++) {
         snippet = `<option value="${i}">${i}</option>`
         $('.days').append(snippet);
     }
     //fill urgency
-    for(i = 0; i < 3; i++) {
+    for(var i = 0; i < 3; i++) {
 	snippet = `<option value="${urgency[i]}">${urgency[i]}</option>`
         $('.urgency').append(snippet); 
     }
