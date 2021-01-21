@@ -39,7 +39,7 @@ def next_weekday(weekday, time, mode, iteration = 10): #get upcoming weekday dat
         elif mode == 2:
             delta = datetime.timedelta(days=14)
         elif mode == 3:
-            delta = datetime.timedelta(days=28)
+            delta = datetime.timedelta(days=30)
         dates.append(weekday)
         weekday = weekday + delta
     print(dates)
