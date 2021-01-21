@@ -42,7 +42,7 @@ $(document).ready(function () {
     console.log("Task query");
     $.ajax({
         type: "POST",
-        url: "database-systems-2021.herokuapp.com/getTasks",
+        url: "/getTasks",
         success: function (data) {
             console.log(data);
             updateVal(JSON.parse(data));
@@ -55,7 +55,7 @@ $(document).ready(function () {
     console.log("Upcoming Task query");
     $.ajax({
         type: "POST",
-        url: "database-systems-2021.herokuapp.com/upcomingTasks",
+        url: "/upcomingTasks",
         success: function (data) {
             let updates = JSON.parse(data);
             console.log("UPDATES: ", updates);
@@ -216,7 +216,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            url: "database-systems-2021.herokuapp.com/deleteUserAlert",
+            url: "/deleteUserAlert",
             data: {
                 value: taskid
             },
@@ -248,7 +248,7 @@ $(document).ready(function () {
 		       dict+=value+',';});
              	$.ajax({
          	   type: "POST",
-         	   url: "database-systems-2021.herokuapp.com/updateUserAlert",
+         	   url: "/updateUserAlert",
          	   data:{	
 		     value:dict,
 		   },
