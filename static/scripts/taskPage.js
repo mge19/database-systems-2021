@@ -149,7 +149,7 @@ $(document).ready(function () {
         console.log("Sending search query:", dict);
         $.ajax({
             type: "POST",
-            url: "database-systems-2021.herokuapp.com/searchTasks",
+            url: "/searchTasks",
             data: dict,
             success: function (data) {
                 console.log("AJAX RETURN: ", data);
