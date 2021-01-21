@@ -11,8 +11,14 @@ import sql_functions as sf
 active_user=0
 active_group=0
 app = Flask(__name__)
-def next_weekday(weekday, time, mode, iteration = 10): #get upcoming weekday dates.  # 0 = Monday, 1=Tuesday, 2=Wednesday...
-#usage weekday = (0 = Monday, 1=Tuesday, 2=Wednesday...), time = 00:00:00, mode = (0 = Daily, 1 = Weekly, 2 = BiWeekly, 4 = Monthly,) iteration = total dates to return
+def next_weekday(days, time, mode, iteration = 10): 
+    if days == "Monday": weekday = 0
+    elif days == "Tuesday": weekday = 1
+    elif days == "Wednesday": weekday = 2
+    elif days == "Thursday": weekday = 3
+    elif days == "Friday": weekday = 4
+    elif days == "Saturday": weekday = 5
+    elif days == "Sunday": weekday = 6
     d = datetime.datetime.now()    
     days_ahead = weekday - d.weekday()
     print(days_ahead)
@@ -288,15 +294,7 @@ def reminder_page():
                 days = int(request.form['days'])
                 interval = request.form['interval']
                 print("Interval: " + interval)
-                if days == "Monday": day = 0
-                elif days == "Tuesday": day = 1
-                elif days == "Wednesday": day = 2
-                elif days == "Thursday": day = 3
-                elif days == "Friday": day = 4
-                elif days == "Saturday": day = 5
-                elif days == "Sunday": day = 6
-                mode = interval
-                reminder_days = next_weekday(days, time, mode, iteration=5) #change iteration to add more repeating reminders
+                reminder_days = next_weekday(days, time, interval, iteration=5) #change iteration to add more repeating reminders
                 print(reminder_days)
                 for datetime in reminder_days:
                     print("added: " + str(datetime))
@@ -472,15 +470,7 @@ def group_reminders_page():
                 days = int(request.form['days'])
                 interval = request.form['interval']
                 print("Interval: " + interval)
-                if days == "Monday": day = 0
-                elif days == "Tuesday": day = 1
-                elif days == "Wednesday": day = 2
-                elif days == "Thursday": day = 3
-                elif days == "Friday": day = 4
-                elif days == "Saturday": day = 5
-                elif days == "Sunday": day = 6
-                mode = interval
-                reminder_days = next_weekday(days, time, mode, iteration=5) #change iteration to add more repeating reminders
+                reminder_days = next_weekday(days, time, interval, iteration=5) #change iteration to add more repeating reminders
                 print(reminder_days)
                 for datetime in reminder_days:
                     print("added: " + str(datetime))
