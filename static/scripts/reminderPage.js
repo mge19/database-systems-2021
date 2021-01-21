@@ -50,10 +50,6 @@ $(document).ready(function () {
     let options = ["Daily", "Weekly", "BiWeekly", "Monthly"];
     let days = ["Monday", "Tuesday", "Wednesday", "Thursday",
         "Friday", "Saturday", "Sunday"];
-    for (var i = 0; i < days.length; i++) {
-        snippet = `<option value="${days[i]}">${days[i]}</option>`
-        $('.rp-days').append(snippet); 
-    }
     //fill interval options
     for (var i=0; i < options.length; i++) {
         snippet = `<option value="${i}">${options[i]}</option>`
@@ -64,7 +60,11 @@ $(document).ready(function () {
         snippet = `<option value="${months[i]}">${months[i]}</option>`
         $('.months').append(snippet);
     }
-
+    //fill day options for repeated
+    for (var i = 0; i < days.length; i++) {
+        snippet = `<option value="${days[i]}">${days[i]}</option>`
+        $('.rp-days').append(snippet); 
+    }
     //fill days
     for (var i = 1; i <= 31; i++) {
         snippet = `<option value="${i}">${i}</option>`
