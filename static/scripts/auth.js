@@ -1,11 +1,11 @@
-function toggle_password(x,y) {
-  var z = document.getElementById(x);
-  if (z.type == "password") {
-    z.type = "text";
-    y.className="far fa-eye-slash";
+function toggle_password(a,y) {
+  var x=$('#'+a);
+  if (x.attr('type') == "password") {
+    x.attr('type',"text");
+    y.className="fa fa-eye-slash eyespan";
   } else {
-    z.type = "password";
-    y.className="far fa-eye";}
+    x.attr('type',"password");
+    y.className="fa fa-eye eyespan";}
 }
 $(document).ready(function () {
     $('.form').find('input, textarea').on('keyup keydown blur focus', function (e) {
