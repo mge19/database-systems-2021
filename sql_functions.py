@@ -6,8 +6,8 @@ def execute_sql(command):
     print("executing...")
     print(command)
     try:
-
-            url="postgres://postgres:1a2b3c@localhost:5432/postgres"  
+            url="postgres://mkstwwsqziogdt:821d366826d60dd49017e47a785b3c588d3bc3d847fd7fc18f6b9fe85abd0d9e@ec2-54-247-158-179.eu-west-1.compute.amazonaws.com:5432/dfl517spu7ensr"
+            #url="postgres://postgres:1a2b3c@localhost:5432/postgres"  
             print("debug0")
             connection = dbapi2.connect(url)
             print("debug1")
