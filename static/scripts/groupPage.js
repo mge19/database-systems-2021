@@ -1,12 +1,14 @@
-function show_hide(a,b) {
-  var x = document.getElementById(a);
-  if (x.style.display === "none") {
+function show_hide(a,b){
+  let classname=$(b).attr('class');
+  let pos=$('.'+classname).index($(b));
+  var x = $('.'+a)[pos];
+  if (x.style.display == "none") {
     x.style.display = "block";
-    b.value="Hide Description";}
+    b.value="Hide Group Description";}
   else {
     x.style.display = "none";
-    b.value="Show Description";}
-}
+    b.value="Show Group Description";}
+} 
 //get all groups that user is admin
 $(document).ready(function () {
     //get all groups that user is admin
@@ -30,8 +32,9 @@ $(document).ready(function () {
                 inhtml += '<form method="POST"><input type="text" name="group_id" style="display:none" value='+group_id+'>'
 		inhtml += '<input type="submit" name="remindersButton" value="Group Reminders"><input type="submit" name="tasksButton" value="Group Tasks">';
 		inhtml += '<input type="submit" name="updateButton" value="Update Group"><input type="submit" name="deleteButton" value="Delete Group">'
-		inhtml += '<input type="button" onclick=show_hide("show_admin'+i+'",this) value="Show Description"></form>';
-		inhtml += '<p id="show_admin'+i+'" style="display:none;">'+description+'</p>';
+                inhtml += '<input type="submit" name="leaveButton" value="Leave Group">'
+		inhtml += '<input type="button" class="show" onclick=show_hide("show_admin",this) value="Show Group Description"></form>';
+		inhtml += '<p class="show_admin" style="display:none;">'+description+'</p>';
                 inhtml += '</li>';
             }
 	    table.append(inhtml)
@@ -58,8 +61,8 @@ $(document).ready(function () {
                 inhtml += '<form method="POST"><input type="text" name="group_id" style="display:none" value='+group_id+'>'
 		inhtml += '<input type="submit" name="remindersButton" value="Group Reminders"><input type="submit" name="tasksButton" value="Group Tasks">';
 		inhtml += '<input type="submit" name="leaveButton" value="Leave Group">'
-		inhtml += '<input type="button" onclick=show_hide("show_non_admin'+i+'",this) value="Show Description"></form>';
-		inhtml += '<p id="show_non_admin'+i+'" style="display:none;">'+description+'</p>';
+		inhtml += '<input type="button"  class="showx" onclick=show_hide("show_non_admin",this)  value="Show Group Description"></form>';
+		inhtml += '<p class="show_non_admin" style="display:none;">'+description+'</p>';
                 inhtml += '</li>';
             }
 	    table.append(inhtml)
