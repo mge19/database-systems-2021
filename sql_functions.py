@@ -7,8 +7,7 @@ def execute_sql(command):
     print(command)
     try:
 
-            url="postgres://htdzjafdlgqcto:e0d12d58a76a23c0d74bcb47834211e2e7d579e5817f7f5830b5f414ac1b18a5@ec2-54-216-155-253.eu-west-1.compute.amazonaws.com:5432/d1m7ithdu0pdc7"
-            #url="postgres://postgres:1a2b3c@localhost:5432/postgres"
+            url="postgres://postgres:1a2b3c@localhost:5432/postgres"  
             print("debug0")
             connection = dbapi2.connect(url)
             print("debug1")
@@ -58,7 +57,6 @@ def get_user_id(email): #check if email and password pair in database
         return -1
     return data
   
-
 def check_password(email, password): #check if email and password pair in database
     command = """SELECT user_id FROM USERS 
                 WHERE email = '%(email)s' AND password = '%(password)s';"""
@@ -109,7 +107,16 @@ def update_user_email(user_id, email): #get email using user id
                 WHERE user_id = '%(user_id)s';"""
     data = execute_sql(command % {'user_id': user_id, 'email': email})
     return data
-
+def delete_user(user_id):
+    command = """DELETE FROM GROUPS_USERS
+                 WHERE user_id='%(user_id)s';"""
+    data = execute_sql(command % {'user_id': user_id})
+    command = """DELETE FROM USER_ALERTS
+                 WHERE user_id='%(user_id)s';"""
+    data = execute_sql(command % {'user_id': user_id})
+    command = """DELETE FROM USERS
+                 WHERE user_id='%(user_id)s';"""
+    data = execute_sql(command % {'user_id': user_id})
 def get_user_groups(user_id):
     command = """SELECT * FROM GROUPS_USERS INNER JOIN GROUPS
                 ON GROUPS_USERS.user_id = GROUPS.user_id
@@ -311,7 +318,7 @@ def search_group_reminder_date(group_id, date_time,type):
         else:    
             datetime1=datetime1.replace(month=datetime1.month+1)
     elif(type==2):
-        datetime1=datetime1+datetime.timedelta(days=1)
+        ddatetime1=datetime1+datetime.timedelta(days=1)
     command = """
     SELECT * FROM GROUP_ALERTS
     WHERE alert_time >= '%(datetime)s' AND alert_time < '%(datetime1)s' AND group_id = '%(group_id)s' AND type = 'reminder';"""
@@ -361,6 +368,13 @@ def search_group_task_title(group_id, title):
     SELECT * FROM GROUP_ALERTS
     WHERE STRPOS(title,'%(title)s')>0 AND group_id = '%(group_id)s' AND type = 'task';"""
     data = execute_sql(command % {'title' : title,'group_id': group_id})
+    return data
+
+def get_user_groups(user_id):
+    command = """
+    SELECT * FROM GROUPS_USERS
+    WHERE user_id = '%(user_id)s';"""
+    data = execute_sql(command % {'user_id': user_id})
     return data
 
 def get_user_admin_groups(user_id):
@@ -450,5 +464,3 @@ def get_upcoming_group_tasks(group_id):
     WHERE alert_time >= '%(datetime1)s' AND alert_time < '%(datetime2)s' AND group_id = '%(group_id)s' AND type = 'task';"""
     data = execute_sql(command % {'datetime1' : d,'datetime2' : weekday,'group_id': group_id})
     return data
-
-
