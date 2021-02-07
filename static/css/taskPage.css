@@ -128,7 +128,7 @@ label {
 
 
 /*Text box*/
-.description-area { /*En altta description gösterilen yer*/
+.description-area { /*En altta description gÃ¶sterilen yer*/
     font-size: 1.25rem;
     color: black;
     /*text-align: center;*/
@@ -199,7 +199,7 @@ ul {
     margin-left: -20px !important;
 }
 
-.sets li:not(.head) {
+.sets li:not(#head) {
     border-bottom: 1px dashed #000;
     border-radius: 5px;
     margin-bottom: 10px;
@@ -211,7 +211,7 @@ ul {
     font-size: 14px;
 }
 
-.sets li.head {
+#head {
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 5px;
