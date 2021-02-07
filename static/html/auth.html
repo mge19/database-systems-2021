@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/auth.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    
+	<script src="{{ url_for('static', filename = 'scripts/auth.js')}}"></script>
+	
+	<title>Login & Register</title>
+
+</head>
+<body>
+    <div class="form">
+        <ul class="tab-group">
+            <li class="tab active">
+                <a href="#signup">Sign up</a>
+            </li>
+            <li class="tab">
+                <a href="#login">Login</a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="signup">
+                <p>Sign up</p>
+
+                <form method="post">
+                    <div class="top-row">
+                        <div class="field-wrap">
+                            <label>First Name</label>
+                            <input class="first-name" name="register-first-name" type="text" required >
+                        </div>
+                        <div class="field-wrap">
+                            <label>Last Name</label>
+                            <input class="last-name" name="register-last-name" type="text" required >
+                        </div>
+                    </div>
+                    <div class="field-wrap">
+                        <label>Email Address</label>
+                        <input class="col email" name="register-email" type="text" required >
+						<span class="fa fa-user userspan"></span>
+                    </div>
+                    <div class="field-wrap">
+                        <label>Password</label>
+                        <input id="register-password" class="col password" name="register-password" type="password">
+						<span class="fa fa-key userspan"></span>
+						<span class="fa fa-eye eyespan" onclick="toggle_password('register-password',this)" id="togglePassword"></span>
+                    </div>
+                    <button class="button button-block" name="button" value="register" type="submit">Submit</button>
+                </form>
+            </div>
+            <div id="login" style="display:none;">
+                <p>Login</p>
+                <form method="post">
+                    <div class="field-wrap">
+                        <label>Email Address</label>
+                        <input class="col email" name="login-email" type="text" required >
+						<span class="fa fa-user userspan"></span>
+                    </div>
+                    <div class="field-wrap">
+                        <label>Password</label>
+                        <input id="login-password" class="col password" name="login-password" type="password" required >
+						<span class="fa fa-key userspan"></span>
+						<span class="fa fa-eye eyespan" onclick="toggle_password('login-password',this)" id="togglePassword"></span>
+                    </div>
+                    <button class="button button-block" name="button" value="login" type="submit">Get Started</button>
+				</form>
+			</div>
+        </div>
+		{% for message in get_flashed_messages() %}
+			<p class="message">{{ message }}</p>
+		{% endfor %}
+    </div>
+</body>
+</html>
+
