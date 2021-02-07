@@ -14,8 +14,8 @@ INIT_STATEMENTS = [
                             
     """ CREATE TABLE IF NOT EXISTS GROUPS(
             group_id serial PRIMARY KEY,
-            group_name varchar(20) UNIQUE NOT NULL,
-            description varchar(100)
+            group_name varchar(20) NOT NULL,
+            description varchar(100) NOT NULL
             );""",
                     
     """ CREATE TABLE IF NOT EXISTS USER_ALERTS(
