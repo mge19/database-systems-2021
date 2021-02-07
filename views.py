@@ -1,6 +1,6 @@
 import os
 import datetime
-from flask import abort, current_app, render_template, flash
+from flask import render_template, flash
 from flask import request
 from flask import redirect
 from flask import url_for
@@ -11,7 +11,7 @@ import sql_functions as sf
 active_user=0
 active_group=0
 app = Flask(__name__)
-def next_weekday(days, time, mode, iteration = 10): 
+def next_weekday(days, time, mode, iteration = 10):
     if days == "Monday": weekday = 0
     elif days == "Tuesday": weekday = 1
     elif days == "Wednesday": weekday = 2
@@ -31,9 +31,8 @@ def next_weekday(days, time, mode, iteration = 10):
     mode = int(mode)
     for i in range(2):
         split_time[i] = int(split_time[i])
-
     d = d.replace(hour=split_time[0], minute=split_time[1], second=0, microsecond=0)
-    if days_ahead <= 0: # Target day already happened this week
+    if days_ahead <= 0: 
         days_ahead += 7
     weekday = d + datetime.timedelta(days_ahead)
     dates = []
@@ -240,40 +239,52 @@ def edit_profile_page():
         if request.method=='GET':
             return render_template("editProfile.html")
         else:
-            error=False
-            user_id=session['user_id']
-            new_first_name=request.form['new-first-name']
-            new_last_name=request.form['new-last-name']
-            new_email=request.form['new-email']
-            user_info = sf.get_user_info(user_id)
-            first_name=user_info[1][1]
-            last_name=user_info[1][2]
-            email = user_info[1][3]
-            if new_first_name=="" and new_last_name=="" and new_email=="":
-                print("Please fill at least one information.")
-                flash("Please fill at least one information.")
-                return redirect(url_for('edit_profile_page'))
-            if new_first_name==first_name:
-                print("New first name should be different")
-                flash("New first name should be different")
-                error=True
-            if new_last_name==last_name:
-                print("New last name should be different")
-                flash("New last name should be different")
-                error=True
-            if new_email==email:
-                print("New e-mail should be different")
-                flash("New e-mail should be different")
-                error=True
-            if error:
-                return redirect(url_for('edit_profile_page'))
-            if new_first_name!='':
-                sf.update_user_first_name(user_id,new_first_name)
-            if new_last_name!='':
-                sf.update_user_last_name(user_id,new_last_name)
-            if new_email!='':
-                sf.update_user_email(user_id,new_email)
-            return redirect(url_for("main_page"))
+            if request.form["button"]=="delete":
+                sf.delete_user(active_user)
+                print("User is deleted,you should register again.")
+                flash("User is deleted,you should register again.")
+                session['user_id'] = None
+                session['logged_in'] = False
+                return redirect(url_for('login_page'))
+            else:
+                error=False
+                user_id=session['user_id']
+                new_first_name=request.form['new-first-name']
+                new_last_name=request.form['new-last-name']
+                new_email=request.form['new-email']
+                user_info = sf.get_user_info(user_id)
+                first_name=user_info[1][1]
+                last_name=user_info[1][2]
+                email = user_info[1][3]
+                if new_first_name=="" and new_last_name=="" and new_email=="":
+                    print("Please fill at least one information.")
+                    flash("Please fill at least one information.")
+                    return redirect(url_for('edit_profile_page'))
+                if new_first_name==first_name:
+                    print("New first name should be different")
+                    flash("New first name should be different")
+                    error=True
+                if new_last_name==last_name:
+                    print("New last name should be different")
+                    flash("New last name should be different")
+                    error=True
+                if new_email==email:
+                    print("New e-mail should be different")
+                    flash("New e-mail should be different")
+                    error=True
+                if error:
+                    return redirect(url_for('edit_profile_page'))
+                if new_first_name!='':
+                    sf.update_user_first_name(user_id,new_first_name)
+                if new_last_name!='':
+                    sf.update_user_last_name(user_id,new_last_name)
+                if new_email!='':
+                    sf.update_user_email(user_id,new_email)
+                print("profile changed, relogin now")
+                flash("profile changed, relogin now")
+                session['user_id'] = None
+                session['logged_in'] = False
+                return redirect(url_for("login_page"))
 def reminder_page():
     if not session.get('logged_in'):   
         return redirect(url_for("login_page"))
@@ -291,7 +302,7 @@ def reminder_page():
                 title = request.form['title1']
                 message = request.form['message1']
                 urgency = request.form['urgency1']
-                days = int(request.form['days'])
+                days = request.form['days']
                 interval = request.form['interval']
                 print("Interval: " + interval)
                 reminder_days = next_weekday(days, time, interval, iteration=5) #change iteration to add more repeating reminders
@@ -346,10 +357,15 @@ def deleteUserAlert():
     return alert_id
 
 def updateUserAlert():
-    data=request.values.get('value').split(',')
-    datetime = data[1] + " " + data[2]
-    sf.update_user_alert(data[0],datetime,data[4],data[5],data[3])
-    return data[0]
+    data=request.values.get('id')
+    date=request.values.get('date')
+    time=request.values.get('time')
+    datetime = date + " " + time
+    title=request.values.get('title')
+    message=request.values.get('message')
+    urgency=request.values.get('urgency')
+    sf.update_user_alert(data,datetime,title,message,urgency)
+    return data
     
 def deleteGroupAlert():
     alert_id=request.values.get('value')
@@ -467,7 +483,7 @@ def group_reminders_page():
                 title = request.form['title1']
                 message = request.form['message1']
                 urgency = request.form['urgency1']
-                days = int(request.form['days'])
+                days = request.form['days']
                 interval = request.form['interval']
                 print("Interval: " + interval)
                 reminder_days = next_weekday(days, time, interval, iteration=5) #change iteration to add more repeating reminders
