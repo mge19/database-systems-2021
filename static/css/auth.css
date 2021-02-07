@@ -128,7 +128,25 @@ input{
 .message{
 	font-size:25px;
 }
-#
+.userspan{
+	float: left;
+    margin-left: 3px;
+    margin-top: -23px;
+    position: relative;
+    color:#1ab188;
+    z-index: 2;
+}
+span {
+	float: right;
+    margin-right: 3px;
+    margin-top: -23px;
+    position: relative;
+    color:#1ab188;
+    z-index: 2;
+}
+#togglePassword{
+	cursor: pointer;
+}
 /*Result*/
 .Result {
     margin-top: 40px;
